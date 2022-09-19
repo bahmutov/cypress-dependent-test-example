@@ -23,13 +23,10 @@ it('creates item A', () => {
   })
 })
 
+// this test after the previous test runs just once
+// can run by itself using "it.only"
 it('continues working with data created in the previous test', () => {
-  // cy.dataSession('project name').then((projectName) => {
-  cy.dataSession({
-    name: 'project name',
-    setup: Cypress._.identity,
-    shareAcrossSpecs: true,
-  }).then((projectName) => {
+  cy.dataSession('project name').then((projectName) => {
     expect(projectName, 'got project name').to.be.a(
       'string',
       'project name created by previous test',
