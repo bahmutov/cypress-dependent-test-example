@@ -5,28 +5,33 @@
 
 import 'cypress-data-session'
 
+function createProjectIfNeeded() {
+  // how do we pass the data created in this test
+  // to the next test?
+  const projectName = `my random project ${Cypress._.random(1e4)}`
+
+  return cy.dataSession({
+    name: 'project name',
+    setup() {
+      return projectName
+    },
+    shareAcrossSpecs: true,
+  })
+}
+
 it('creates item A', () => {
   cy.log('a very long test')
   cy.wait(1000)
-  cy.log('that creates project').then(() => {
-    // how do we pass the data created in this test
-    // to the next test?
-    const projectName = `my random project ${Cypress._.random(1e4)}`
+  cy.log('that creates project')
+  createProjectIfNeeded().then((projectName) => {
     cy.log(projectName)
-    cy.dataSession({
-      name: 'project name',
-      setup() {
-        return projectName
-      },
-      shareAcrossSpecs: true,
-    })
   })
 })
 
 // this test after the previous test runs just once
 // can run by itself using "it.only"
-it.only('continues working with data created in the previous test', () => {
-  cy.dataSession('project name').then((projectName) => {
+it('continues working with data created in the previous test', () => {
+  createProjectIfNeeded().then((projectName) => {
     expect(projectName, 'got project name').to.be.a(
       'string',
       'project name created by previous test',
