@@ -1,7 +1,6 @@
 // enables intelligent code completion for Cypress commands
 // https://on.cypress.io/intelligent-code-completion
 /// <reference types="cypress" />
-/// <reference types="cypress-data-session" />
 
 let projectName
 
