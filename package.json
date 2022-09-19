@@ -1,0 +1,18 @@
+{
+  "name": "cypress-dependent-test-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playing with defining dependencies between tests via cypress-data-session",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^10.8.0",
+    "cypress-data-session": "^2.1.0",
+    "prettier": "^2.7.1"
+  }
+}
